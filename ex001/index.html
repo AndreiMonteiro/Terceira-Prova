@@ -9,18 +9,46 @@
 <body>
     <main>
         <h1>Financie seu carro</h1>
-        <form action="lem.php" method="get" onsubmit="calc()">
-            <label for="model">Qual é o modelo do carro</label>
-            <input type="text" name="model" id="model">
+        <form action="lem.php" method="get" onsubmit="return calc()">
+            <label for="modellet">Qual é o modelo do carro</label>
+            <input type="text" name="modellet" id="modellet">
             <br> 
             <label for="val">Qual é o valor do modelo</label>
             <input type="number" name="val" id="val">
             <br>
             <label for="porc">Quantas parcelas?</label>
-            <input type="number" name="porc" id="porc" min="2" max="36">
-            <input type="submit" value="">
+            <input type="number" name="porc" id="porc" min="2" max="36"><br>
+            <input type="submit" value="calcular">
 
         </form>
+        <p id="par"></p>
     </main>
+    <script>
+        function calc() {
+            let par = document.getElementById("par")
+            let modellet = document.getElementById("modellet").value
+            let val = Number(document.getElementById("val").value)
+            let porc = Number(document.getElementById("porc").value)
+            let jur = 0
+
+            if (porc >= 0 && porc <= 4) {
+                jur = 0 
+            }
+            else if (porc >= 5 && porc <= 12 ) {
+                jur = 25
+
+            }
+            else if (porc >= 13 && porc <= 24) {
+                jur = 60 
+            }
+            else if (por < 24) {
+                jur = 80 
+            }
+            let impa = (val * jur) / 100
+            par.innerHTML = `O valor do do carro com os juros é ${val + impa} dividio em 
+            ${(val + impa) / porc} parcelas.`
+            return false
+        }
+    </script>
 </body>
 </html>
